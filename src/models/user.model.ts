@@ -20,8 +20,8 @@ export default class UserModel {
     return createToken(id);
   };
 
-  login = async (username: string) => {
-    const [[row]] = await this.connection.execute<IUser[][] & RowDataPacket[][]>(
+  login = async (username: string) : Promise<IUser> => {
+    const [[row]] = await this.connection.execute<IUser[] & RowDataPacket[]>(
       `SELECT * FROM Trybesmith.users as u
       WHERE u.username = ?`,
       [username],
