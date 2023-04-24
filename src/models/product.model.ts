@@ -1,5 +1,5 @@
 import { Pool, RowDataPacket } from 'mysql2/promise';
-import { ICreated, IProdCreate, IProduct } from '../interfaces';
+import { ICreated, IProdCreated, IProduct } from '../interfaces';
 
 export default class ProductModel {
   connection: Pool;
@@ -8,8 +8,8 @@ export default class ProductModel {
     this.connection = connection;
   }
 
-  create = async (name: string, amount: string): Promise<ICreated> => {
-    const row = await this.connection.execute<IProdCreate & RowDataPacket[]>(
+  create = async (name: string, amount: string): Promise<IProdCreated> => {
+    const row = await this.connection.execute<ICreated & RowDataPacket[]>(
       'INSERT INTO Trybesmith.products(name, amount) VALUES(?, ?)',
       [name, amount],
     );

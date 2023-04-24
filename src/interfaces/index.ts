@@ -5,7 +5,7 @@ export interface IProduct {
   orderId: number
 }
 
-export interface IProdCreate {
+export interface ICreated {
   affectedRows: number,
   fieldCount: number,
   insertId: number,
@@ -14,7 +14,7 @@ export interface IProdCreate {
   warningStatus: number
 }
 
-export interface ICreated {
+export interface IProdCreated {
   id: number,
   name: string,
   amount: string
