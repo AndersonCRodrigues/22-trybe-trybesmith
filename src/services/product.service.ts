@@ -12,4 +12,9 @@ export default class ProductService {
     const result = await this.model.create(name, amount);
     return result;
   };
+
+  getAll = async () => {
+    const result = await this.model.getAll();
+    return result;
+  };
 }
