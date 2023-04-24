@@ -19,3 +19,10 @@ export interface IProdCreated {
   name: string,
   amount: string
 }
+
+export interface ICharacter {
+  username: string,
+  vocation: string,
+  level: number,
+  password: string
+}
