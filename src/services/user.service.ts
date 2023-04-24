@@ -2,7 +2,7 @@ import UserModel from '../models/user.model';
 import connection from '../models/connection';
 import { ICharacter } from '../interfaces';
 
-export default class ProductService {
+export default class UserService {
   model: UserModel;
 
   constructor() {
