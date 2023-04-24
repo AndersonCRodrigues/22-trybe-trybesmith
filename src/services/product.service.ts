@@ -1,11 +1,15 @@
-import connection from '../db/connection';
+import connection from '../models/connection';
 import ProductModel from '../models/product.model';
 
 export default class ProductService {
-  constructor(public model = new ProductModel(connection)) {}
+  model: ProductModel;
 
-  async create(name: string, amount: string) {
+  constructor() {
+    this.model = new ProductModel(connection);
+  }
+
+  create = async (name: string, amount: string) => {
     const result = await this.model.create(name, amount);
     return result;
-  }
+  };
 }
