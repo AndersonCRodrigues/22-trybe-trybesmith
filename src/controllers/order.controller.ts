@@ -8,8 +8,8 @@ export default class OrderController {
     this.service = new OrderService();
   }
 
-  create = async (req: Request, res: Response) => {
+  getAll = async (req: Request, res: Response) => {
     const result = await this.service.getAll();
-    res.status(201).json(result);
+    res.status(200).json(result);
   };
 }
