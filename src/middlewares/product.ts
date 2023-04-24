@@ -4,7 +4,10 @@ import producSchema from '../schema/product.joi';
 import HttpException from '../utils/http.exception';
 
 const checkError = (error: ValidationError) => {
-  if (error.details[0].type === 'string.required') {
+  console.log(error.details[0].type);
+  const { type } = error.details[0];
+
+  if (type === 'string.empty' || type === 'any.required') {
     const erro = { status: 400, message: error.message };
     throw erro as HttpException;
   } else {
