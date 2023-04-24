@@ -1,5 +1,5 @@
 import { Pool, RowDataPacket } from 'mysql2/promise';
-import { ICreated, IProdCreate } from '../interfaces';
+import { ICreated, IProdCreate, IProduct } from '../interfaces';
 
 export default class ProductModel {
   connection: Pool;
@@ -20,5 +20,13 @@ export default class ProductModel {
       amount,
     };
     return result;
+  };
+
+  getAll = async () : Promise<IProduct[]> => {
+    const [row] = await this.connection.execute<IProduct[] & RowDataPacket[]>(
+      'SELECT * FROM Trybesmith.products',
+    );
+
+    return row;
   };
 }
