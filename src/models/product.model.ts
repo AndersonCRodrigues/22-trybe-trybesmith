@@ -13,7 +13,6 @@ export default class ProductModel {
       'INSERT INTO Trybesmith.products(name, amout) VALUES(?, ?)',
       [name, amount],
     );
-
     return row;
   }
 }
