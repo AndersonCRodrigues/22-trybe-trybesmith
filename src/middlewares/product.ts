@@ -26,4 +26,4 @@ const verifyProduct = (
   next();
 };
 
-export default { verifyProduct };
+export default verifyProduct;
