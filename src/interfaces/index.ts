@@ -32,3 +32,11 @@ export interface IOrder {
   userId: number,
   productsIds: number[]
 }
+
+export interface IUser {
+  id: number,
+  username: string,
+  vocation: string,
+  level: number,
+  password: string
+}

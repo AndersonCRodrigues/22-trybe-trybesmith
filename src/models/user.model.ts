@@ -1,5 +1,5 @@
 import { Pool, RowDataPacket } from 'mysql2/promise';
-import { ICreated } from '../interfaces';
+import { ICreated, IUser } from '../interfaces';
 import createToken from '../utils/auth';
 
 export default class UserModel {
@@ -18,5 +18,15 @@ export default class UserModel {
     const id = row.insertId;
 
     return createToken(id);
+  };
+
+  login = async (username: string) => {
+    const [[row]] = await this.connection.execute<IUser[][] & RowDataPacket[][]>(
+      `SELECT * FROM Trybesmith.users as u
+      WHERE u.username = ?`,
+      [username],
+    );
+
+    return row;
   };
 }
