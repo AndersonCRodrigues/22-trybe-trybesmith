@@ -21,7 +21,7 @@ export default class OrderModel {
     return row;
   };
 
-  create = async (id: number) => {
+  create = async (id: number) : Promise<number> => {
     const [row] = await this.connection.execute<ICreated & RowDataPacket[]>(
       'INSERT INTO Trybesmith.orders(user_id) VALUES(?)',
       [id],
