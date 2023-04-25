@@ -12,4 +12,14 @@ export default class OrderController {
     const result = await this.service.getAll();
     res.status(200).json(result);
   };
+
+  create = async (req: Request, res: Response) => {
+    let token = '';
+    if (req.headers.authorization) {
+      token = req.headers.authorization;
+    }
+    const { productsIds } = req.body;
+    const result = await this.service.create(token, productsIds);
+    res.status(201).json(result);
+  };
 }
