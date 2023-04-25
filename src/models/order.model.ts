@@ -22,7 +22,7 @@ export default class OrderModel {
   };
 
   create = async (id: number) => {
-    const [[row]] = await this.connection.execute<ICreated[] & RowDataPacket[]>(
+    const [row] = await this.connection.execute<ICreated & RowDataPacket[]>(
       'INSERT INTO Trybesmith.orders(user_id) VALUES(?)',
       [id],
     );
