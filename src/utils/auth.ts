@@ -1,6 +1,10 @@
-import { sign } from 'jsonwebtoken';
+import { sign, verify } from 'jsonwebtoken';
 
 const secretkey = process.env.JWT_SECRET || 'insecure';
+
+interface ITokenId {
+  id:number
+}
 
 const createToken = (id: number) => {
   const data = {
@@ -8,7 +12,7 @@ const createToken = (id: number) => {
   };
 
   const token = sign(
-    data, 
+    data,
     secretkey,
     {
       expiresIn: '1d',
@@ -19,4 +23,9 @@ const createToken = (id: number) => {
   return token;
 };
 
-export default createToken;
+const decodeToken = (token: string) : ITokenId => {
+  const decode = verify(token, secretkey);
+  return decode as ITokenId;
+};
+
+export { createToken, decodeToken };
