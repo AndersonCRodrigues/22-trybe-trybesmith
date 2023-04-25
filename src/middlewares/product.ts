@@ -1,20 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
-import { ValidationError } from 'joi';
 import producSchema from '../schema/product.joi';
-import HttpException from '../utils/http.exception';
-
-const checkError = (error: ValidationError) => {
-  console.log(error.details[0].type);
-  const { type } = error.details[0];
-
-  if (type === 'string.empty' || type === 'any.required') {
-    const erro = { status: 400, message: error.message };
-    throw erro as HttpException;
-  } else {
-    const erro = { status: 422, message: error.message };
-    throw erro as HttpException;
-  }
-};
+import checkError from '../utils/checkError';
 
 const verifyProduct = (
   req: Request,

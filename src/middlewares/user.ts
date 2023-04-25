@@ -1,19 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
-import { ValidationError } from 'joi';
 import { loginSchema, userSchema } from '../schema/user.joi';
-import HttpException from '../utils/http.exception';
-
-const checkError = (error: ValidationError) => {
-  const { type } = error.details[0];
-
-  if (type === 'string.empty' || type === 'any.required') {
-    const erro = { status: 400, message: error.message };
-    throw erro as HttpException;
-  } else {
-    const erro = { status: 422, message: error.message };
-    throw erro as HttpException;
-  }
-};
+import checkError from '../utils/checkError';
 
 const verifyLogin = (
   req: Request,
