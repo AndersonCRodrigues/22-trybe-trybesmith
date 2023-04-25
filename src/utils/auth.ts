@@ -4,6 +4,7 @@ const secretkey = process.env.JWT_SECRET || 'insecure';
 
 interface ITokenId {
   id:number
+  message?: string
 }
 
 const createToken = (id: number) => {
@@ -28,4 +29,13 @@ const decodeToken = (token: string) : ITokenId => {
   return decode as ITokenId;
 };
 
-export { createToken, decodeToken };
+const verifyToken = (token: string): ITokenId => {
+  try {
+    const validate = verify(token, secretkey);
+    return validate as ITokenId;
+  } catch (e) {
+    return { message: 'error', id: 0 };
+  }
+};
+
+export { createToken, decodeToken, verifyToken };

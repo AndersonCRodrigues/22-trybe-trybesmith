@@ -2,7 +2,7 @@ import UserModel from '../models/user.model';
 import connection from '../models/connection';
 import { ICharacter } from '../interfaces';
 import HttpException from '../utils/http.exception';
-import createToken from '../utils/auth';
+import { createToken } from '../utils/auth';
 
 export default class UserService {
   model: UserModel;
@@ -12,8 +12,8 @@ export default class UserService {
   }
 
   create = async ({ username, vocation, level, password } : ICharacter) => {
-    const result = await this.model.create(username, vocation, level, password);
-    return result;
+    const id = await this.model.create(username, vocation, level, password);
+    return createToken(id);
   };
 
   login = async (username: string, password: string) => {

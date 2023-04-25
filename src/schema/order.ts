@@ -8,6 +8,7 @@ const orderSchema = Joi.object({
 }).messages({
   'any.empty': erroIsRequired,
   'any.required': erroIsRequired,
+  'array.min': '{{#label}} must include only numbers',
 });
 
 export default orderSchema;

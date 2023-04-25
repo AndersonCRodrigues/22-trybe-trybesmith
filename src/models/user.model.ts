@@ -1,6 +1,5 @@
 import { Pool, RowDataPacket } from 'mysql2/promise';
 import { ICreated, IUser } from '../interfaces';
-import createToken from '../utils/auth';
 
 export default class UserModel {
   connection: Pool;
@@ -15,9 +14,7 @@ export default class UserModel {
       [username, vocation, level, password],
     );
 
-    const id = row.insertId;
-
-    return createToken(id);
+    return row.insertId;
   };
 
   login = async (username: string) : Promise<IUser> => {
