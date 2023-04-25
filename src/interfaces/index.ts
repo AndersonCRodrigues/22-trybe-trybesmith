@@ -40,3 +40,8 @@ export interface IUser {
   level: number,
   password: string
 }
+
+export interface IUpdate {
+  userId: number,
+  productsIds: number[],
+}
